@@ -30,3 +30,8 @@ The Recursive Backtracker algorithm uses random walks and backtracks recursively
 The Sidewinder algorithm is very similar to the Binary Tree algorithm, with two main directions that it chooses from as it works through the cells row by row. However, it keeps track of and revisits past cells in a way that decrease its efficiency only slightly, and it's biases slightly more. Unlike the Binary Tree algorithm, mazes produced using the Sidewinder algorithm have only one empty edge. (More information [here](https://weblog.jamisbuck.org/2011/2/3/maze-generation-sidewinder-algorithm.html#))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/SidewinderMaze.png width = 25%>
+
+## Three Dimensional Mazes
+I also implimented three dimensional mazes, where paths utilize all three axis. Below is an image taken from inside of a three dimensional maze, generated using the Recursive Backtracker algorith.
+
+<img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/3DMazes/RecursiveBacktracker3DMaze.png width = 50%>

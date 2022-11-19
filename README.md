@@ -25,3 +25,8 @@ The Hunt and Kill algorithm is similar to the Aldous Broder algorithm, but has a
 The Recursive Backtracker algorithm uses random walks and backtracks recursively through the maze when it gets stuck. It is a fast and has a bias towards longer runs. (More information [here](https://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/RecursiveBacktrackerMaze.png width = 25%>
+
+### Sidewinder
+The Sidewinder algorithm is very similar to the Binary Tree algorithm, with two main directions that it chooses from as it works through the cells row by row. However, it keeps track of and revisits past cells in a way that decrease its efficiency only slightly, and it's biases slightly more. Unlike the Binary Tree algorithm, mazes produced using the Sidewinder algorithm have only one empty edge. (More information [here](https://weblog.jamisbuck.org/2011/2/3/maze-generation-sidewinder-algorithm.html#))
+
+<img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/SidewinderMaze.png width = 25%>

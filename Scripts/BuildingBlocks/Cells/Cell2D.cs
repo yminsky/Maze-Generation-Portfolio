@@ -169,9 +169,9 @@ public class Cell2D : Cell
         {
             foreach (Cell2D link in cell.GetLinks())
             {
-                if (!(this.distances.GetCells().Contains(link)))
+                if (!(this.distances.getCells().Contains(link)))
                 {
-                    this.distances.SetDist(link, newDist);
+                    this.distances.setDist(link, newDist);
                     newFrontier.Add(link);
                 }
             }

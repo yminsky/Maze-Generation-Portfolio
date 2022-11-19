@@ -110,28 +110,4 @@ public class RecursiveBacktracker : MonoBehaviour, RandomMaze
     public Grid getMazePlan() => this.mazePlan;
 
     public Tools.dimensions getDimensions() => d;
-
-    public RenderMaze getRenderer()
-    {
-        if (d == Tools.dimensions.TwoD)
-        {
-            return new RenderMaze2D(mazePlan as Grid2D);
-        }
-        else
-        {
-            return new RenderMaze3D(mazePlan as Grid3D);
-        }
-    }
-
-    public RenderMaze getRenderer(Vector3 pos)
-    {
-        if (d == Tools.dimensions.TwoD)
-        {
-            return new RenderMaze2D(mazePlan as Grid2D, pos);
-        }
-        else
-        {
-            return new RenderMaze3D(mazePlan as Grid3D, pos);
-        }
-    }
 }

@@ -22,7 +22,6 @@ public class Cell3D : Cell
         this.links = new List<Cell>();
         this.neighbors = new Dictionary<direction, Cell3D>();
         InitializeNeighbors();
-
     }
 
     public int GetRow() => row;
@@ -180,9 +179,9 @@ public class Cell3D : Cell
         {
             foreach (Cell3D link in cell.GetLinks())
             {
-                if (!(this.distances.GetCells().Contains(link)))
+                if (!(this.distances.getCells().Contains(link)))
                 {
-                    this.distances.SetDist(link, newDist);
+                    this.distances.setDist(link, newDist);
                     newFrontier.Add(link);
                 }
             }

@@ -23,6 +23,8 @@ public class Wilsons : MonoBehaviour, RandomMaze
         genMaze();
     }
 
+    public Grid getMazePlan() => this.mazePlan;
+
     private void initUnvisited()
     {
         foreach (Cell2D cell in mazePlan.getCells())
@@ -115,17 +117,4 @@ public class Wilsons : MonoBehaviour, RandomMaze
         }
         return str;
     }
-
-    public Grid getMazePlan() => this.mazePlan;
-
-    public RenderMaze getRenderer()
-    {
-        return new RenderMaze2D(mazePlan);
-    }
-
-    public RenderMaze getRenderer(Vector3 pos)
-    {
-        return new RenderMaze2D(mazePlan, pos);
-    }
-
 }

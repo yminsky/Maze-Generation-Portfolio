@@ -15,9 +15,9 @@ public class Distances : MonoBehaviour
         this.distances.Add(root, 0);
     }
 
-    public int GetDist(Cell cell) => this.distances[cell];
+    public int getDist(Cell cell) => this.distances[cell];
 
-    public void SetDist(Cell cell, int dist)
+    public void setDist(Cell cell, int dist)
     {
         try
         {
@@ -26,7 +26,7 @@ public class Distances : MonoBehaviour
         catch (ArgumentException) { }
     }
 
-    public List<Cell> GetCells() //should probably test this.... (sorry Aba)
+    public List<Cell> getCells() //should probably test this.... 
     {
         List<Cell> keys = new List<Cell>();
         foreach (Cell key in this.distances.Keys)

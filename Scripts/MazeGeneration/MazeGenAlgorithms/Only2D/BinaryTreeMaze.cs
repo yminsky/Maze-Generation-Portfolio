@@ -60,15 +60,5 @@ public class BinaryTreeMaze : MonoBehaviour, RandomMaze
     }
 
     public Grid getMazePlan() => this.mazePlan;
-
-    public RenderMaze getRenderer()
-    {
-        return new RenderMaze2D(mazePlan);
-    }
-
-    public RenderMaze getRenderer(Vector3 pos)
-    {
-        return new RenderMaze2D(mazePlan, pos);
-    }
 }
 

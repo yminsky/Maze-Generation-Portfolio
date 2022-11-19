@@ -16,6 +16,8 @@ public class Sidewinder : MonoBehaviour, RandomMaze
         this.mazePlan = genMaze(rows, cols);
     }
 
+    public Grid getMazePlan() => this.mazePlan;
+
     private Grid2D genMaze(int rows, int cols)
     {
         Grid2D mazePlan = new Grid2D(rows, cols);
@@ -61,17 +63,4 @@ public class Sidewinder : MonoBehaviour, RandomMaze
         }
         this.currentGroup = new List<Cell2D>();
     }
-
-    public Grid getMazePlan() => this.mazePlan;
-
-    public RenderMaze getRenderer()
-    {
-        return new RenderMaze2D(mazePlan);
-    }
-
-    public RenderMaze getRenderer(Vector3 pos)
-    {
-        return new RenderMaze2D(mazePlan, pos);
-    }
-
 }

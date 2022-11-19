@@ -5,19 +5,12 @@ using System;
 
 public class RenderMaze2D : MonoBehaviour, RenderMaze
 {
-    private float unit = 10;
     private Grid2D mazePlan;
-    private Vector3 pos = new Vector3(0, 0, 0);
+    private float unit = 10;
 
     public RenderMaze2D(Grid2D mazePlan)
     {
         this.mazePlan = mazePlan;
-    }
-
-    public RenderMaze2D(Grid2D mazePlan, Vector3 pos)
-    {
-        this.mazePlan = mazePlan;
-        this.pos = pos;
     }
 
     public Grid getMazePlan() => this.mazePlan;
@@ -81,7 +74,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
                 {
                     GameObject nswall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                     nswall.transform.localScale = new Vector3(unit, unit, 0.2f);
-                    nswall.transform.position = pos + new Vector3(unit * col, 0, unit * row);
+                    nswall.transform.position = new Vector3(unit * col, 0, unit * row);
                 }
             }
         }
@@ -93,7 +86,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
                 {
                     GameObject ewwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                     ewwall.transform.localScale = new Vector3(0.2f, unit, unit);
-                    ewwall.transform.position = pos + new Vector3(unit * (col - 0.5f), 0, unit * (row + 0.5f));
+                    ewwall.transform.position = new Vector3(unit * (col - 0.5f), 0, unit * (row + 0.5f));
                 }
             }
         }

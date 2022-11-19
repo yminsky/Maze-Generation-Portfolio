@@ -5,19 +5,12 @@ using System;
 
 public class RenderMaze3D : MonoBehaviour, RenderMaze
 {
-    private float unit = 10;
     private Grid3D mazePlan;
-    private Vector3 pos = new Vector3(0, 0, 0);
+    private float unit = 10;
 
     public RenderMaze3D(Grid3D mazePlan)
     {
         this.mazePlan = mazePlan;
-    }
-
-    public RenderMaze3D(Grid3D mazePlan, Vector3 pos)
-    {
-        this.mazePlan = mazePlan;
-        this.pos = pos;
     }
 
     public Grid getMazePlan() => mazePlan;
@@ -27,13 +20,6 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
     public void setUnit(float unit)
     {
         this.unit = unit;
-    }
-
-    public Vector3 getPos() => pos;
-
-    public void setPos(Vector3 pos)
-    {
-        this.pos = pos;
     }
 
     private void prepNonActiveCells()
@@ -93,7 +79,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject nswall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         nswall.transform.localScale = new Vector3(unit, unit, 0.2f);
-                        nswall.transform.position = pos + new Vector3(unit * col, unit * level, unit * row);
+                        nswall.transform.position = new Vector3(unit * col, unit * level, unit * row);
                     }
                 }
             }
@@ -108,7 +94,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject ewwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         ewwall.transform.localScale = new Vector3(0.2f, unit, unit);
-                        ewwall.transform.position = pos + new Vector3(unit * (col - 0.5f), unit * level, unit * (row + 0.5f));
+                        ewwall.transform.position = new Vector3(unit * (col - 0.5f), unit * level, unit * (row + 0.5f));
                     }
                 }
             }
@@ -123,7 +109,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject udwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         udwall.transform.localScale = new Vector3(unit, 0.2f, unit);
-                        udwall.transform.position = pos + new Vector3(unit * col, unit * (level - 0.5f), unit * (row + 0.5f));
+                        udwall.transform.position = new Vector3(unit * col, unit * (level - 0.5f), unit * (row + 0.5f));
                     }
                 }
             }

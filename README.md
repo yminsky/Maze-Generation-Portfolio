@@ -1,7 +1,7 @@
 # Maze-Generation-Portfolio
 
 ## Introduction
-I wrote this code in 9th grade, and the project was tangential to the Game Development course I was taking at the time. All code is written in C# and for Unity. This repository contains a condensed version of the Unity Project, including all code related to maze generation and rendering. Since the code cannot be run in Unity in this format, pictures are included througout the explanations. (These pictures can also all be found in the [MazePhotos](https://github.com/sigalrmp/Maze-Generation-Portfolio/tree/main/MazePhotos) directory)
+I wrote this code in 9th grade, and the project was tangential to the Game Development course I was taking at the time. All code is written in C# and for Unity. This repository contains a condensed version of the Unity Project, including all code related to maze generation and rendering. Since the code cannot be run in Unity in this format, pictures are included througout the explanations. (These pictures can also all be found in the [MazePhotos](https://github.com/sigalrmp/Maze-Generation-Portfolio/tree/main/MazePhotos) directory, and the code is in the [Scripts](https://github.com/sigalrmp/Maze-Generation-Portfolio/tree/main/Scripts) directory)
 
 ## Two Dimensional Mazes
 I implimented 6 different algorithms for randomly generating **perfect mazes**.

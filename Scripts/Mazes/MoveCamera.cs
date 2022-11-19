@@ -14,6 +14,7 @@ public class MoveCamera : MonoBehaviour
         cam = Camera.main;
         print("width: " + Screen.width);
     }
+    
     void Update()
     {
         float xmovement = speed * Input.GetAxis("Horizontal");

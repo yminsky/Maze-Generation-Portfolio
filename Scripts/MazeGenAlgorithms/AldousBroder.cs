@@ -27,8 +27,6 @@ public class AldousBroder : MonoBehaviour, RandomMaze
         genMaze();
     }
 
-    public Grid getMazePlan() => this.mazePlan;
-
     private void genMaze()
     {
         mazePlan.genActiveCells();
@@ -52,5 +50,16 @@ public class AldousBroder : MonoBehaviour, RandomMaze
         }
     }
 
+    public Grid getMazePlan() => this.mazePlan;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(mazePlan);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(mazePlan, pos);
+    }
 
 }

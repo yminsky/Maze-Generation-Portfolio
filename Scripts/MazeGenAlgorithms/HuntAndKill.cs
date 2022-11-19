@@ -31,8 +31,6 @@ public class HuntAndKill : MonoBehaviour, RandomMaze
 
     }
 
-    public Grid getMazePlan() => this.mazePlan;
-
     private void genMaze()
     {
         Cell2D startCell = activeCells[Random.Range(0, activeCells.Count)] as Cell2D;
@@ -92,5 +90,17 @@ public class HuntAndKill : MonoBehaviour, RandomMaze
     private bool cellIsVisited(Cell2D cell)
     {
         return cell.GetLinks().Count > 0;
+    }
+
+    public Grid getMazePlan() => this.mazePlan;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(mazePlan);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(mazePlan, pos);
     }
 }

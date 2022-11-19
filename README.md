@@ -7,9 +7,11 @@ I wrote this code in 9th grade, as a project tangential to the Game Development 
 I implimented 6 different algorithms for randomly generating **perfect mazes**.
 
 ### Aldous Broder
-The Aldous Broder algorithm utilizes random walks, and while it is very inefficient, the mazes it produces are chosen completely randomly from all possible perfect mazes. (More information [here](https://weblog.jamisbuck.org/2011/1/17/maze-generation-aldous-broder-algorithm))
+The Aldous Broder algorithm utilizes random walks, adding each unvisited cell to the path until there are none left. This is incredibly inefficient, especially towards the end of the process when there are few unvisited cells left, but the mazes it produces are chosen completely randomly from all possible perfect mazes. (More information [here](https://weblog.jamisbuck.org/2011/1/17/maze-generation-aldous-broder-algorithm))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/AldousBroderMaze.png width = 25%>
+
+[Aldous Broder Implimentation]()
 
 ### Binary Tree
 The Binary Tree algorithm is very simple and efficient, but is strongly biased. The most glaring effect of this is that the mazes it produces will always have two edges that are completely empty. (More information [here](https://weblog.jamisbuck.org/2011/2/1/maze-generation-binary-tree-algorithm))
@@ -17,7 +19,7 @@ The Binary Tree algorithm is very simple and efficient, but is strongly biased. 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/BinaryTreeMaze.png width = 25%>
 
 ### Hunt and Kill
-The Hunt and Kill algorithm is similar to the Aldous Broder algorithm, but has a few important differences that make it significantly more efficient, but also slightly biased. (More information [here](https://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm))
+The Hunt and Kill algorithm is similar to the Aldous Broder algorithm, but has an important difference that adds slight biases but make it significantly more efficient. Namely, when the algorithm reaches a dead end, it efficiently searches row by row for an unvisited cell, rather than continuing to randomly walk until it happens to find one. (More information [here](https://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/HuntAndKillMaze.png width = 25%>
 
@@ -31,7 +33,18 @@ The Sidewinder algorithm is very similar to the Binary Tree algorithm, with two 
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/SidewinderMaze.png width = 25%>
 
+### Wilson's
+Wilson's algorithm is similar to the Aldous Broder algorithm, in that it uses random walks to inefficiently but effectively generate a completely random perfect maze. The main difference is that while Aldous Broder's algorithm starts at a random cell and walks randomly until all cells have been visited, Wilson's algorithm picks unvisited cells and walks randomly until a visited cell is reached. This process is repeated until the maze is finished. The result of this is that Wilson's algorithm takes longer at the beginning when few cells have been visited, rather than at the end.
+(More information [here](https://weblog.jamisbuck.org/2011/1/20/maze-generation-wilson-s-algorithm))
+
 ## Three Dimensional Mazes
 I also implimented three dimensional mazes, where paths utilize all three axis. Below is an image taken from inside of a three dimensional maze, generated using the Recursive Backtracker algorith.
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/3DMazes/RecursiveBacktracker3DMaze.png width = 50%>
+
+## Shaped Mazes
+The last major feature that I implimented is the ability to shape mazes. This is essentially done by removing cells from a grid, and then running algoritms in the constrained grid. This is compatable with my implimentation of all of the algorithms except for Sidewinder and Wilsons. Examples of shaped mazes are shown below:
+
+<img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/Shaped2DMazes/AldousBroderShapedMaze.png width = 20%><img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/Shaped2DMazes/BinaryTreeShapedMaze.png width = 20%><img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/Shaped2DMazes/HuntAndKillShapedMaze.png width = 20%><img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/Shaped2DMazes/RecursiveBacktrackerShapedMaze.png width = 20%>
+
+(From left to right: Aldous Broder, Binary Tree, Hunt and Kill, Recursive Backtracker)

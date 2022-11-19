@@ -5,7 +5,7 @@ public class HuntAndKill : MonoBehaviour, RandomMaze
 {
     private int rows;
     private int cols;
-    private Grid2D mazePlan;
+    private Grid2D grid;
     private ArrayList activeCells;
     private bool finished;
 
@@ -13,25 +13,23 @@ public class HuntAndKill : MonoBehaviour, RandomMaze
     {
         this.rows = rows;
         this.cols = cols;
-        this.mazePlan = new Grid2D(rows, cols);
-        this.mazePlan.genActiveCells();
-        this.activeCells = this.mazePlan.getActiveCells();
+        this.grid = new Grid2D(rows, cols);
+        this.grid.genActiveCells();
+        this.activeCells = this.grid.getActiveCells();
         this.finished = false;
         genMaze();
     }
 
-    public HuntAndKill(Grid2D mazePlan)
+    public HuntAndKill(Grid2D grid)
     {
-        this.rows = mazePlan.getRows();
-        this.cols = mazePlan.getCols();
-        this.mazePlan = mazePlan;
-        this.mazePlan.genActiveCells();
-        this.activeCells = this.mazePlan.getActiveCells();
+        this.rows = grid.getRows();
+        this.cols = grid.getCols();
+        this.grid = grid;
+        this.grid.genActiveCells();
+        this.activeCells = this.grid.getActiveCells();
         this.finished = false;
-
+        genMaze();
     }
-
-    public Grid getMazePlan() => this.mazePlan;
 
     private void genMaze()
     {
@@ -92,5 +90,17 @@ public class HuntAndKill : MonoBehaviour, RandomMaze
     private bool cellIsVisited(Cell2D cell)
     {
         return cell.GetLinks().Count > 0;
+    }
+
+    public Grid getGrid() => this.grid;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(grid);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(grid, pos);
     }
 }

@@ -30,9 +30,11 @@ public class Cell2D : Cell
         neighbors.Add(direction.West, null);
     }
 
+    public Tools.dimensions dimensions() => Tools.dimensions.TwoD;
+
     public bool IsActive() => this.active;
 
-    public void setUse(bool active)
+    public void SetStatus(bool active)
     {
         this.active = active;
     }
@@ -169,9 +171,9 @@ public class Cell2D : Cell
         {
             foreach (Cell2D link in cell.GetLinks())
             {
-                if (!(this.distances.getCells().Contains(link)))
+                if (!(this.distances.GetCells().Contains(link)))
                 {
-                    this.distances.setDist(link, newDist);
+                    this.distances.SetDist(link, newDist);
                     newFrontier.Add(link);
                 }
             }

@@ -6,7 +6,7 @@ public interface RenderMaze
 {
     public void drawMaze();
 
-    public Grid getMazePlan();
+    public Grid getGrid();
 
     public float getUnit();
 

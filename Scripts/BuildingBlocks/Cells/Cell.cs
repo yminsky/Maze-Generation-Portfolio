@@ -11,4 +11,9 @@ public interface Cell
     public bool IsActive();
 
     public List<Cell> GetLinks();
+
+    public void SetStatus(bool active);
+
+    public Tools.dimensions dimensions();
+
 }

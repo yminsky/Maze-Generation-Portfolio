@@ -7,32 +7,30 @@ public class AldousBroder : MonoBehaviour, RandomMaze
     private int rows;
     private int cols;
     private ArrayList visited;
-    private Grid2D mazePlan;
+    private Grid2D grid;
 
     public AldousBroder(int rows, int cols)
     {
         this.rows = rows;
         this.cols = cols;
         this.visited = new ArrayList();
-        this.mazePlan = new Grid2D(rows, cols);
+        this.grid = new Grid2D(rows, cols);
         genMaze();
     }
 
-    public AldousBroder(Grid2D mazePlan)
+    public AldousBroder(Grid2D grid)
     {
-        this.rows = mazePlan.getRows();
-        this.cols = mazePlan.getCols();
+        this.rows = grid.getRows();
+        this.cols = grid.getCols();
         this.visited = new ArrayList();
-        this.mazePlan = mazePlan;
+        this.grid = grid;
         genMaze();
     }
-
-    public Grid getMazePlan() => this.mazePlan;
 
     private void genMaze()
     {
-        mazePlan.genActiveCells();
-        ArrayList activeCells = mazePlan.getActiveCells();
+        grid.genActiveCells();
+        ArrayList activeCells = grid.getActiveCells();
         Cell2D firstCell = activeCells[Random.Range(0, activeCells.Count)] as Cell2D;
         visited.Add(firstCell);
         genMazeH(firstCell);
@@ -40,7 +38,7 @@ public class AldousBroder : MonoBehaviour, RandomMaze
 
     private void genMazeH(Cell2D currentCell)
     {
-        if (this.visited.Count != this.mazePlan.getActiveCells().Count)
+        if (this.visited.Count != this.grid.getActiveCells().Count)
         {
             Cell2D nextCell = currentCell.randomNeighbor();
             if (!(visited.Contains(nextCell)))
@@ -52,5 +50,16 @@ public class AldousBroder : MonoBehaviour, RandomMaze
         }
     }
 
+    public Grid getGrid() => this.grid;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(grid);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(grid, pos);
+    }
 
 }

@@ -8,7 +8,7 @@ public class BinaryTreeMaze : MonoBehaviour, RandomMaze
     private int cols;
     private Cell2D.direction ver;
     private Cell2D.direction hor;
-    private Grid2D mazePlan;
+    private Grid2D grid;
 
     public BinaryTreeMaze(int rows, int cols, Cell2D.direction ver, Cell2D.direction hor)
     {
@@ -16,24 +16,24 @@ public class BinaryTreeMaze : MonoBehaviour, RandomMaze
         this.cols = cols;
         this.ver = ver;
         this.hor = hor;
-        this.mazePlan = new Grid2D(rows, cols);
+        this.grid = new Grid2D(rows, cols);
         genMaze();
     }
 
-    public BinaryTreeMaze(Grid2D mazePlan, Cell2D.direction ver, Cell2D.direction hor)
+    public BinaryTreeMaze(Grid2D grid, Cell2D.direction ver, Cell2D.direction hor)
     {
-        this.rows = mazePlan.getRows();
-        this.cols = mazePlan.getCols();
+        this.rows = grid.getRows();
+        this.cols = grid.getCols();
         this.ver = ver;
         this.hor = hor;
-        this.mazePlan = mazePlan;
+        this.grid = grid;
         genMaze();
     }
 
     private void genMaze()
     {
-        mazePlan.genActiveCells();
-        ArrayList blueprint = mazePlan.getActiveCells();
+        grid.genActiveCells();
+        ArrayList blueprint = grid.getActiveCells();
         foreach (Cell2D cell in blueprint)
         {
             int row = cell.GetRow();
@@ -59,6 +59,16 @@ public class BinaryTreeMaze : MonoBehaviour, RandomMaze
         }
     }
 
-    public Grid getMazePlan() => this.mazePlan;
+    public Grid getGrid() => this.grid;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(grid);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(grid, pos);
+    }
 }
 

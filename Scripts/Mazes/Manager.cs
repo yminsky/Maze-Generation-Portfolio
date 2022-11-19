@@ -5,7 +5,7 @@ using UnityEngine;
 public class Manager : MonoBehaviour
 {
     List<RandomMaze> mazes;
-    const int sideLen = 10;
+    const int sideLen = 30;
     public static int tick;
 
     void Start()
@@ -26,7 +26,7 @@ public class Manager : MonoBehaviour
             mazePos += new Vector3(renderer.getUnit() * (sideLen + 5), 0, 0);
         }
         // maze = new RecursiveBacktracker(10, 5, 10);
-        // renderer = new RenderMaze3D(maze.getMazePlan() as Grid3D);
+        // renderer = new RenderMaze3D(maze.getGrid() as Grid3D);
         // renderer.drawMaze();
         tick = 0;
     }
@@ -46,7 +46,7 @@ public class Manager : MonoBehaviour
     private void testCellLinksContains()
     {
         RandomMaze maze = mazes[0];
-        Cell2D[,] cells = maze.getMazePlan().getCells() as Cell2D[,];
+        Cell2D[,] cells = maze.getGrid().getCells() as Cell2D[,];
         List<Cell> links = cells[0, 0].GetLinks();
         print("should be true: " + links.Contains(links[0]));
         print("should be false: " + links.Contains(new Cell2D(100, 100)));

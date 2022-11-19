@@ -9,7 +9,6 @@ public class Grid2D : Grid
     private Cell2D[,] cells;
     private ArrayList activeCells;
 
-
     public Grid2D(int rows, int columns)
     {
         this.rows = rows;
@@ -87,4 +86,7 @@ public class Grid2D : Grid
     public int getRows() => this.rows;
 
     public int getCols() => this.columns;
+
+    public Tools.dimensions dimensions() => Tools.dimensions.TwoD;
+
 }

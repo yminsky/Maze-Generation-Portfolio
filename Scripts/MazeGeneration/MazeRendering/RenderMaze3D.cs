@@ -5,15 +5,22 @@ using System;
 
 public class RenderMaze3D : MonoBehaviour, RenderMaze
 {
-    private Grid3D mazePlan;
     private float unit = 10;
+    private Grid3D grid;
+    private Vector3 pos = new Vector3(0, 0, 0);
 
-    public RenderMaze3D(Grid3D mazePlan)
+    public RenderMaze3D(Grid3D grid)
     {
-        this.mazePlan = mazePlan;
+        this.grid = grid;
     }
 
-    public Grid getMazePlan() => mazePlan;
+    public RenderMaze3D(Grid3D grid, Vector3 pos)
+    {
+        this.grid = grid;
+        this.pos = pos;
+    }
+
+    public Grid getGrid() => grid;
 
     public float getUnit() => unit;
 
@@ -22,10 +29,17 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
         this.unit = unit;
     }
 
+    public Vector3 getPos() => pos;
+
+    public void setPos(Vector3 pos)
+    {
+        this.pos = pos;
+    }
+
     private void prepNonActiveCells()
     {
         List<Cell3D> nonActive = new List<Cell3D>();
-        foreach (Cell3D cell in mazePlan.getCells())
+        foreach (Cell3D cell in grid.getCells())
         {
             if (!cell.IsActive())
             {
@@ -44,7 +58,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
     private List<Cell3D> genAllNeighbors(Cell3D cell)
     {
         List<Cell3D> neighbors = new List<Cell3D>();
-        Cell3D[,,] cells = mazePlan.getCells() as Cell3D[,,];
+        Cell3D[,,] cells = grid.getCells() as Cell3D[,,];
         int row = cell.GetRow();
         int col = cell.GetColumn();
         int level = cell.GetLevel();
@@ -66,9 +80,9 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
     public void drawMaze()
     {
         prepNonActiveCells();
-        int rows = mazePlan.getRows();
-        int cols = mazePlan.getCols();
-        int levels = mazePlan.getLevels();
+        int rows = grid.getRows();
+        int cols = grid.getCols();
+        int levels = grid.getLevels();
         for (int row = 0; row <= rows; row++) //should be <=
         {
             for (int col = 0; col < cols; col++)
@@ -79,7 +93,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject nswall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         nswall.transform.localScale = new Vector3(unit, unit, 0.2f);
-                        nswall.transform.position = new Vector3(unit * col, unit * level, unit * row);
+                        nswall.transform.position = pos + new Vector3(unit * col, unit * level, unit * row);
                     }
                 }
             }
@@ -94,7 +108,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject ewwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         ewwall.transform.localScale = new Vector3(0.2f, unit, unit);
-                        ewwall.transform.position = new Vector3(unit * (col - 0.5f), unit * level, unit * (row + 0.5f));
+                        ewwall.transform.position = pos + new Vector3(unit * (col - 0.5f), unit * level, unit * (row + 0.5f));
                     }
                 }
             }
@@ -109,7 +123,7 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
                     {
                         GameObject udwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                         udwall.transform.localScale = new Vector3(unit, 0.2f, unit);
-                        udwall.transform.position = new Vector3(unit * col, unit * (level - 0.5f), unit * (row + 0.5f));
+                        udwall.transform.position = pos + new Vector3(unit * col, unit * (level - 0.5f), unit * (row + 0.5f));
                     }
                 }
             }
@@ -118,8 +132,8 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
 
     private bool isNSWall(int row, int col, int level)
     {
-        int rows = mazePlan.getRows();
-        Cell3D[,,] cells = mazePlan.getCells() as Cell3D[,,];
+        int rows = grid.getRows();
+        Cell3D[,,] cells = grid.getCells() as Cell3D[,,];
         bool edgeInUse = isNSEdgeInUse(row, col, level, rows, cells);
         if (!(row == rows))
         {
@@ -146,8 +160,8 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
 
     private bool isEWWall(int row, int col, int level)
     {
-        int cols = mazePlan.getCols();
-        Cell3D[,,] cells = mazePlan.getCells() as Cell3D[,,];
+        int cols = grid.getCols();
+        Cell3D[,,] cells = grid.getCells() as Cell3D[,,];
         bool edgeInUse = isEWEdgeInUse(row, col, level, cols, cells);
         if (!(col == cols))
         {
@@ -174,8 +188,8 @@ public class RenderMaze3D : MonoBehaviour, RenderMaze
 
     private bool isUDWall(int row, int col, int level)
     {
-        int levels = mazePlan.getLevels();
-        Cell3D[,,] cells = mazePlan.getCells() as Cell3D[,,];
+        int levels = grid.getLevels();
+        Cell3D[,,] cells = grid.getCells() as Cell3D[,,];
         bool edgeInUse = isUDEdgeInUse(row, col, level, levels, cells);
         if (!(level == levels))
         {

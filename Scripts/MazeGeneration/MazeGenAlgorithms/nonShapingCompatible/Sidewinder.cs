@@ -6,22 +6,20 @@ public class Sidewinder : MonoBehaviour, RandomMaze
 {
     private int rows;
     private int cols;
-    private Grid2D mazePlan;
+    private Grid2D grid;
 
     List<Cell2D> currentGroup = new List<Cell2D>();
     public Sidewinder(int rows, int cols)
     {
         this.rows = rows;
         this.cols = cols;
-        this.mazePlan = genMaze(rows, cols);
+        this.grid = genMaze(rows, cols);
     }
-
-    public Grid getMazePlan() => this.mazePlan;
 
     private Grid2D genMaze(int rows, int cols)
     {
-        Grid2D mazePlan = new Grid2D(rows, cols);
-        Cell2D[,] cells = mazePlan.getCells() as Cell2D[,];
+        Grid2D grid = new Grid2D(rows, cols);
+        Cell2D[,] cells = grid.getCells() as Cell2D[,];
         foreach (Cell2D cell in cells)
         {
             bool topRow = cell.GetRow() == rows - 1;
@@ -36,8 +34,8 @@ public class Sidewinder : MonoBehaviour, RandomMaze
                 else goNorth();
             }
         }
-        mazePlan.setCells(cells);
-        return mazePlan;
+        grid.setCells(cells);
+        return grid;
     }
 
     private void goEast(Cell2D cell)
@@ -63,4 +61,17 @@ public class Sidewinder : MonoBehaviour, RandomMaze
         }
         this.currentGroup = new List<Cell2D>();
     }
+
+    public Grid getGrid() => this.grid;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(grid);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(grid, pos);
+    }
+
 }

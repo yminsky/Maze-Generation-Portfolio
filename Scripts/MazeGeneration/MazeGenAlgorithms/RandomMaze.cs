@@ -4,5 +4,8 @@ using UnityEngine;
 
 interface RandomMaze
 {
-    public Grid getMazePlan();
+    public Grid getGrid();
+    public RenderMaze getRenderer();
+
+    public RenderMaze getRenderer(Vector3 pos);
 }

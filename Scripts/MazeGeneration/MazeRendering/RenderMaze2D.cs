@@ -5,15 +5,22 @@ using System;
 
 public class RenderMaze2D : MonoBehaviour, RenderMaze
 {
-    private Grid2D mazePlan;
     private float unit = 10;
+    private Grid2D grid;
+    private Vector3 pos = new Vector3(0, 0, 0);
 
-    public RenderMaze2D(Grid2D mazePlan)
+    public RenderMaze2D(Grid2D grid)
     {
-        this.mazePlan = mazePlan;
+        this.grid = grid;
     }
 
-    public Grid getMazePlan() => this.mazePlan;
+    public RenderMaze2D(Grid2D grid, Vector3 pos)
+    {
+        this.grid = grid;
+        this.pos = pos;
+    }
+
+    public Grid getGrid() => this.grid;
 
     public float getUnit() => this.unit;
 
@@ -25,7 +32,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
     private void prepNonActiveCells()
     {
         List<Cell2D> nonActive = new List<Cell2D>();
-        foreach (Cell2D cell in mazePlan.getCells())
+        foreach (Cell2D cell in grid.getCells())
         {
             if (!cell.IsActive())
             {
@@ -44,7 +51,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
     private List<Cell2D> genAllNeighbors(Cell2D cell)
     {
         List<Cell2D> neighbors = new List<Cell2D>();
-        Cell2D[,] cells = mazePlan.getCells() as Cell2D[,];
+        Cell2D[,] cells = grid.getCells() as Cell2D[,];
         int row = cell.GetRow();
         int col = cell.GetColumn();
         try { neighbors.Add(cells[row, col + 1]); }
@@ -64,8 +71,8 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
     public void drawMaze()
     {
         prepNonActiveCells();
-        int rows = this.mazePlan.getRows();
-        int cols = this.mazePlan.getCols();
+        int rows = this.grid.getRows();
+        int cols = this.grid.getCols();
         for (int row = 0; row <= rows; row++)
         {
             for (int col = 0; col < cols; col++)
@@ -74,7 +81,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
                 {
                     GameObject nswall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                     nswall.transform.localScale = new Vector3(unit, unit, 0.2f);
-                    nswall.transform.position = new Vector3(unit * col, 0, unit * row);
+                    nswall.transform.position = pos + new Vector3(unit * col, 0, unit * row);
                 }
             }
         }
@@ -86,7 +93,7 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
                 {
                     GameObject ewwall = GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
                     ewwall.transform.localScale = new Vector3(0.2f, unit, unit);
-                    ewwall.transform.position = new Vector3(unit * (col - 0.5f), 0, unit * (row + 0.5f));
+                    ewwall.transform.position = pos + new Vector3(unit * (col - 0.5f), 0, unit * (row + 0.5f));
                 }
             }
         }
@@ -94,8 +101,8 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
 
     private bool isNSWall(int row, int col)
     {
-        int rows = this.mazePlan.getRows();
-        Cell2D[,] cells = this.mazePlan.getCells() as Cell2D[,];
+        int rows = this.grid.getRows();
+        Cell2D[,] cells = this.grid.getCells() as Cell2D[,];
         bool edgeInUse = isNSEdgeInUse(row, col, rows, cells);
         if (!(row == rows))
         {
@@ -122,8 +129,8 @@ public class RenderMaze2D : MonoBehaviour, RenderMaze
 
     private bool isEWWall(int row, int col)
     {
-        int cols = this.mazePlan.getCols();
-        Cell2D[,] cells = this.mazePlan.getCells() as Cell2D[,];
+        int cols = this.grid.getCols();
+        Cell2D[,] cells = this.grid.getCells() as Cell2D[,];
         bool edgeInUse = isEWEdgeInUse(row, col, cols, cells);
         if (!(col == cols))
         {

@@ -83,4 +83,6 @@ public class Grid3D : MonoBehaviour, Grid
 
     public int getLevels() => levels;
 
+    public Tools.dimensions dimensions() => Tools.dimensions.ThreeD;
+
 }

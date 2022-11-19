@@ -12,11 +12,11 @@ public interface Grid
 
     public Cell randomCell();
 
-    //public object getCells();
-
     public int getRows();
 
     public int getCols();
 
     public IEnumerable getCells();
+
+    public Tools.dimensions dimensions();
 }

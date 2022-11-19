@@ -22,7 +22,20 @@ public class Cell3D : Cell
         this.links = new List<Cell>();
         this.neighbors = new Dictionary<direction, Cell3D>();
         InitializeNeighbors();
+
     }
+
+    private void InitializeNeighbors()
+    {
+        neighbors.Add(direction.North, null);
+        neighbors.Add(direction.South, null);
+        neighbors.Add(direction.East, null);
+        neighbors.Add(direction.West, null);
+        neighbors.Add(direction.Up, null);
+        neighbors.Add(direction.Down, null);
+    }
+
+    public Tools.dimensions dimensions() => Tools.dimensions.ThreeD;
 
     public int GetRow() => row;
 
@@ -92,15 +105,6 @@ public class Cell3D : Cell
 
     public bool IsLinked(Cell3D cell) => this.links.Contains(cell);
 
-    private void InitializeNeighbors()
-    {
-        neighbors.Add(direction.North, null);
-        neighbors.Add(direction.South, null);
-        neighbors.Add(direction.East, null);
-        neighbors.Add(direction.West, null);
-        neighbors.Add(direction.Up, null);
-        neighbors.Add(direction.Down, null);
-    }
     public Cell3D GetNeighbor(direction dir) => neighbors[dir];
 
     public Dictionary<direction, Cell3D> GetNeighbors()
@@ -151,16 +155,6 @@ public class Cell3D : Cell
         else { return direction.Down; }
     }
 
-    public enum direction
-    {
-        North,
-        East,
-        South,
-        West,
-        Up,
-        Down
-    }
-
     //finding solutions (Dijkstra's algorithm - symplified)
 
     public void GenDistances()
@@ -179,9 +173,9 @@ public class Cell3D : Cell
         {
             foreach (Cell3D link in cell.GetLinks())
             {
-                if (!(this.distances.getCells().Contains(link)))
+                if (!(this.distances.GetCells().Contains(link)))
                 {
-                    this.distances.setDist(link, newDist);
+                    this.distances.SetDist(link, newDist);
                     newFrontier.Add(link);
                 }
             }
@@ -193,5 +187,15 @@ public class Cell3D : Cell
     }
 
     public Distances GetDistances() => this.distances;
+
+    public enum direction
+    {
+        North,
+        East,
+        South,
+        West,
+        Up,
+        Down
+    }
 
 }

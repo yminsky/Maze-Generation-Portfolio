@@ -9,13 +9,13 @@ public class Wilsons : MonoBehaviour, RandomMaze
     private ArrayList visited;
     private ArrayList unvisited;
     private Stack<Cell2D> path;
-    private Grid2D mazePlan;
+    private Grid2D grid;
 
     public Wilsons(int rows, int cols)
     {
         this.rows = rows;
         this.cols = cols;
-        this.mazePlan = new Grid2D(rows, cols);
+        this.grid = new Grid2D(rows, cols);
         this.visited = new ArrayList();
         this.unvisited = new ArrayList();
         initUnvisited();
@@ -23,11 +23,9 @@ public class Wilsons : MonoBehaviour, RandomMaze
         genMaze();
     }
 
-    public Grid getMazePlan() => this.mazePlan;
-
     private void initUnvisited()
     {
-        foreach (Cell2D cell in mazePlan.getCells())
+        foreach (Cell2D cell in grid.getCells())
         {
             unvisited.Add(cell);
         }
@@ -47,7 +45,7 @@ public class Wilsons : MonoBehaviour, RandomMaze
 
     private void genMaze()
     {
-        Cell2D visitedCell = mazePlan.randomCell() as Cell2D;
+        Cell2D visitedCell = grid.randomCell() as Cell2D;
         markAsVisited(visitedCell);
         Cell2D startCell = randomUnvisited();
         this.path.Push(startCell);
@@ -117,4 +115,17 @@ public class Wilsons : MonoBehaviour, RandomMaze
         }
         return str;
     }
+
+    public Grid getGrid() => this.grid;
+
+    public RenderMaze getRenderer()
+    {
+        return new RenderMaze2D(grid);
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        return new RenderMaze2D(grid, pos);
+    }
+
 }

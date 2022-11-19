@@ -5,35 +5,35 @@ using System;
 
 public class RecursiveBacktracker : MonoBehaviour, RandomMaze
 {
-    private Grid mazePlan;
+    private Grid grid;
     private int cellCount = 1;
     private Tools.dimensions d;
 
     public RecursiveBacktracker(int rows, int cols)
     {
-        this.mazePlan = new Grid2D(rows, cols);
+        this.grid = new Grid2D(rows, cols);
         this.d = Tools.dimensions.TwoD;
         genMaze();
     }
 
     public RecursiveBacktracker(int rows, int cols, int levels)
     {
-        this.mazePlan = new Grid3D(rows, cols, levels);
+        this.grid = new Grid3D(rows, cols, levels);
         this.d = Tools.dimensions.ThreeD;
         genMaze();
     }
 
-    public RecursiveBacktracker(Grid2D mazePlan, Tools.dimensions d)
+    public RecursiveBacktracker(Grid2D grid)
     {
-        this.mazePlan = mazePlan;
-        this.d = d;
+        this.grid = grid;
+        this.d = grid.dimensions();
         genMaze();
     }
 
     private void genMaze()
     {
-        this.mazePlan.genActiveCells();
-        IEnumerable cells = this.mazePlan.getCells();
+        this.grid.genActiveCells();
+        IEnumerable cells = this.grid.getCells();
         Stack<Cell> stack = new Stack<Cell>();
         Cell firstCell = new Cell2D(0, 0);
         foreach (Cell cell in cells)
@@ -52,7 +52,7 @@ public class RecursiveBacktracker : MonoBehaviour, RandomMaze
     private void genMazeH(IEnumerable cells, Stack<Cell> stack)
     {
         //print("starting genMazeH");
-        if (!(cellCount == this.mazePlan.getActiveCells().Count))
+        if (!(cellCount == this.grid.getActiveCells().Count))
         {
             Cell currentCell = stack.Peek();
             List<Cell> neighbors = new List<Cell>();
@@ -107,7 +107,31 @@ public class RecursiveBacktracker : MonoBehaviour, RandomMaze
         }
     }
 
-    public Grid getMazePlan() => this.mazePlan;
+    public Grid getGrid() => this.grid;
 
     public Tools.dimensions getDimensions() => d;
+
+    public RenderMaze getRenderer()
+    {
+        if (d == Tools.dimensions.TwoD)
+        {
+            return new RenderMaze2D(grid as Grid2D);
+        }
+        else
+        {
+            return new RenderMaze3D(grid as Grid3D);
+        }
+    }
+
+    public RenderMaze getRenderer(Vector3 pos)
+    {
+        if (d == Tools.dimensions.TwoD)
+        {
+            return new RenderMaze2D(grid as Grid2D, pos);
+        }
+        else
+        {
+            return new RenderMaze3D(grid as Grid3D, pos);
+        }
+    }
 }

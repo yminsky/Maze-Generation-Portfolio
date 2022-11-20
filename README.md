@@ -26,7 +26,7 @@ The Binary Tree algorithm is very simple and efficient, but is strongly biased. 
 
 [Implimentation](https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/Scripts/MazeGenAlgorithms/shapingCompatible/HuntAndKill.cs)
 
-The Hunt and Kill algorithm is similar to the Aldous Broder algorithm, but has an important difference that adds slight biases but make it significantly more efficient. Namely, when the algorithm reaches a dead end, it efficiently searches row by row for an unvisited cell, rather than continuing to randomly walk until it happens to find one. (More information [here](https://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm))
+The Hunt and Kill algorithm is similar to the Aldous Broder algorithm, but has an important difference that adds slight biases but makes it significantly more efficient. Namely, when the algorithm reaches a dead end, it efficiently searches row by row for an unvisited cell, rather than continuing to randomly walk until it happens to find one. (More information [here](https://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/HuntAndKillMaze.png width = 25%>
 

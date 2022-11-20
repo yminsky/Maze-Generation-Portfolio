@@ -42,7 +42,7 @@ The Recursive Backtracker algorithm uses random walks and backtracks recursively
 
 [Implementation](https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/Scripts/MazeGenAlgorithms/nonShapingCompatible/Sidewinder.cs)
 
-The Sidewinder algorithm is very similar to the Binary Tree algorithm, with two main directions that it chooses from as it works through the cells row by row. However, it keeps track of and revisits past cells in a way that decrease its efficiency only slightly, and it's biases slightly more. Unlike the Binary Tree algorithm, mazes produced using the Sidewinder algorithm have only one empty edge. (More information [here](https://weblog.jamisbuck.org/2011/2/3/maze-generation-sidewinder-algorithm.html#))
+The Sidewinder algorithm is very similar to the Binary Tree algorithm, with two main directions that it chooses from as it works through the cells row by row. However, it keeps track of and revisits past cells in a way that decrease its efficiency only slightly, and its biases slightly more. Unlike the Binary Tree algorithm, mazes produced using the Sidewinder algorithm have only one empty edge. (More information [here](https://weblog.jamisbuck.org/2011/2/3/maze-generation-sidewinder-algorithm.html#))
 
 <img src = https://github.com/sigalrmp/Maze-Generation-Portfolio/blob/main/MazePhotos/2DMazes/SidewinderMaze.png width = 25%>
 
